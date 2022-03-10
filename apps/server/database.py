@@ -1,13 +1,8 @@
 import motor.motor_asyncio
 from bson.objectid import ObjectId
 from decouple import config
-# settings.py
-import os
-from dotenv import load_dotenv
 
-load_dotenv()
-
-MONGO_DETAILS = config("MONGO_DETAILS")
+MONGO_DETAILS = config("MONGO_DETAILS") # lee lq variable del environment (.env)
 
 client = motor.motor_asyncio.AsyncIOMotorClient(MONGO_DETAILS)
 
@@ -27,28 +22,28 @@ def student_helper(student) -> dict:
     }
 
 # crud operations
-# Retrieve all students present in the database
+# Recuperar todos los alumnos presentes en la base de datos
 async def retrieve_students():
     students = []
     async for student in student_collection.find():
         students.append(student_helper(student))
     return students
 
-# Add a new student into to the database
+# Agregar un nuevo estudiante a la base de datos
 async def add_student(student_data: dict) -> dict:
     student = await student_collection.insert_one(student_data)
     new_student = await student_collection.find_one({"_id": student.inserted_id})
     return student_helper(new_student)
 
-# Retrieve a student with a matching ID
+# Recuperar un estudiante con una identificación coincidente
 async def retrieve_student(id: str) -> dict:
     student = await student_collection.find_one({"_id": ObjectId(id)})
     if student:
         return student_helper(student)
 
-# Update a student with a matching ID
+# Actualizar a un estudiante con un ID coincidente
 async def update_student(id: str, data: dict):
-    # Return false if an empty request body is sent.
+    # Devuelve falso si se envía un cuerpo de solicitud vacío.
     if len(data) < 1:
         return False
     student = await student_collection.find_one({"_id": ObjectId(id)})
@@ -60,7 +55,7 @@ async def update_student(id: str, data: dict):
             return True
         return False
 
-# Delete a student from the database
+# Eliminar un alumno de la base de datos
 async def delete_student(id: str):
     student = await student_collection.find_one({"_id": ObjectId(id)})
     if student:
