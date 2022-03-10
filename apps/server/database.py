@@ -19,6 +19,7 @@ def myEnvironment():
     print(f'Mongo database URL: {MONGO_DETAILS}.')
 
 myEnvironment()
+
 # helpers
 def student_helper(student) -> dict:
     return {
