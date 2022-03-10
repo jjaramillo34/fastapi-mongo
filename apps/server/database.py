@@ -15,11 +15,6 @@ database = client.students
 
 student_collection = database.get_collection("students_collection")
 
-def myEnvironment():
-    print(f'Mongo database URL: {MONGO_DETAILS}.')
-
-myEnvironment()
-
 # helpers
 def student_helper(student) -> dict:
     return {
