@@ -1,0 +1,2 @@
+#.env file
+MOMGO_URL= "mongodb+srv://dbUser:dbUserPassword@cluster0.cyud5.mongodb.net/students?retryWrites=true&w=majority"
