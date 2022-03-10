@@ -1,6 +1,6 @@
 from fastapi import FastAPI
 
-from server.routes.student import router as StudentRouter
+from apps.server.routes.student import router as StudentRouter
 
 app = FastAPI()
 
