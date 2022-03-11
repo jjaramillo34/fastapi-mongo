@@ -10,7 +10,7 @@ database = client.students
 
 student_collection = database.get_collection("students_collection")
 
-# helpers
+# helpers student function
 def student_helper(student) -> dict:
     return {
         "id": str(student["_id"]),
